@@ -35,7 +35,7 @@ app.get('/help', (req, response) => {
     response.render('help', {
         helpText: 'This is some helpful text.',
         title: 'Help',
-        name: 'Andrew Mead'
+        name: 'Mohammed Motorwala'
     })
 })
 
@@ -63,23 +63,10 @@ app.get('/weather',(req,response)=>{
     })
 })
 
-app.get('/products', (req, res) => {
-    if (!req.query.search) {
-        return res.send({
-            error: 'You must provide a search term'
-        })
-    }
-
-    console.log(req.query.search)
-    res.send({
-        products: []
-    })
-})
-
 app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Mohammed Motorwala',
         errorMessage: 'Help article not found.'
     })
 })
@@ -87,7 +74,7 @@ app.get('/help/*', (req, res) => {
 app.get('*',(req,res)=>{
     res.render('error', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Mohammed Motorwala',
         errorMessage: 'Page not found.'
     })
 })

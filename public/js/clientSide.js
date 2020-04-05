@@ -2,10 +2,8 @@ console.log('Script loaded')
 
 const weatherForm = document.querySelector('form')
 const searchTerm = document.querySelector('input')
-const message1 = document.querySelector('#Error')
-const message2 = document.querySelector('#Message')
-
-message1.textContent = 'Waiting For User Input...'
+const message1 = document.querySelector('#err')
+const message2 = document.querySelector('#msg')
 
 weatherForm.addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -28,11 +26,11 @@ weatherForm.addEventListener('submit',(e)=>{
         console.log(parsedSearch)
         response.json().then((data) => {
             if (data.error) {
-                message2.textContent = 'Invalid search term'
                 message1.textContent = ''
+                message2.textContent = 'Invalid search term'
             } else{
-                message2.textContent = ''
-                message1.textContent = 'The weather in ' + unParsed + ' is ' + data.weather_descriptions
+                message2.textContent = 'It can be described as ' + data.weather_descriptions + '.'
+                message1.textContent = 'The temperature in ' + unParsed + ' is ' + data.temperature + '°C.'
             }
         })
     })
