@@ -28,7 +28,7 @@ weatherForm.addEventListener('submit',(e)=>{
         console.log(parsedSearch)
         response.json().then((data) => {
             if (data.error) {
-                message2.textContent = 'FUCK this shit'
+                message2.textContent = 'Invalid search term'
                 message1.textContent = ''
             } else{
                 message2.textContent = ''
