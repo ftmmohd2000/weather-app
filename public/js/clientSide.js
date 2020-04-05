@@ -25,12 +25,12 @@ weatherForm.addEventListener('submit',(e)=>{
     fetch('/weather?address=' + parsedSearch).then((response)=>{
         console.log(parsedSearch)
         response.json().then((data) => {
-            if (data.error) {
+            if (data.current.error) {
                 message1.textContent = ''
                 message2.textContent = 'Invalid search term'
             } else{
-                message2.textContent = 'It can be described as ' + data.weather_descriptions + '.'
-                message1.textContent = 'The temperature in ' + unParsed + ' is ' + data.temperature + '°C.'
+                message2.textContent = 'It can be described as ' + data.current.weather_descriptions[0] + '.'
+                message1.textContent = 'The temperature in ' + data.location.name + ' is ' + data.current.temperature + '°C.'
             }
         })
     })

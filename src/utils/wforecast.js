@@ -9,11 +9,11 @@ const forecast = ({latitude,longitude},callback)=>{
     },
     (error,{body})=>{
         if(error)
-            callback("Shit's fucked up yo",undefined)
+            callback("Error",undefined)
         else if(body.error)
-            callback("LOL",undefined)
+            callback("Error",undefined)
         else
-            callback(undefined,body.current)
+            callback(undefined,body)
     })
 }
 
