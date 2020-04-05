@@ -26,7 +26,7 @@ app.get('',(req,response)=>{
 
 app.get('/about',(req,response)=>{
     response.render('about',{
-        title: 'About',
+        title: 'About Us',
         name: 'Mohammmed Motorwala'
     })
 })
