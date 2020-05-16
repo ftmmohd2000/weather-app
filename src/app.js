@@ -7,25 +7,25 @@ const forecast = require('./utils/wforecast')
 const app = express()
 const port = process.env.PORT || 3000
 
-const publicDir = path.join(__dirname,'../public')
-const viewDir = path.join(__dirname,'../templates/views')
-const partialDir = path.join(__dirname,'../templates/partials')
+const publicDir = path.join(__dirname, '../public')
+const viewDir = path.join(__dirname, '../templates/views')
+const partialDir = path.join(__dirname, '../templates/partials')
 
-app.set('view engine','hbs')
-app.set('views',viewDir)
+app.set('view engine', 'hbs')
+app.set('views', viewDir)
 hbs.registerPartials(partialDir)
 
 app.use(express.static(publicDir))
 
-app.get('',(req,response)=>{
-    response.render('index',{
+app.get('', (req, response) => {
+    response.render('index', {
         title: 'Home Page',
         name: 'Mohammed Motorwala'
     })
 })
 
-app.get('/about',(req,response)=>{
-    response.render('about',{
+app.get('/about', (req, response) => {
+    response.render('about', {
         title: 'About Us',
         name: 'Mohammmed Motorwala'
     })
@@ -40,22 +40,22 @@ app.get('/help', (req, response) => {
 })
 
 
-app.get('/weather',(req,response)=>{
+app.get('/weather', (req, response) => {
 
-    if(!req.query.address){
+    if (!req.query.address) {
         return response.send({
             address: req.query.address
         })
     }
 
-    geocode(req.query.address,(error,data)=>{
-        if(error)
+    geocode(req.query.address, (error, data) => {
+        if (error)
             response.send({ error: 'Invalid location.' })
-        else{
-            forecast(data,(error,weather)=>{
-                if(error)
+        else {
+            forecast(data, (error, weather) => {
+                if (error)
                     response.send({ error: 'No connection' })
-                else{
+                else {
                     response.send(weather)
                 }
             })
@@ -71,7 +71,7 @@ app.get('/help/*', (req, res) => {
     })
 })
 
-app.get('*',(req,res)=>{
+app.get('*', (req, res) => {
     res.render('error', {
         title: '404',
         name: 'Mohammed Motorwala',
@@ -79,6 +79,6 @@ app.get('*',(req,res)=>{
     })
 })
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log('Started Server at port ' + port)
 })
